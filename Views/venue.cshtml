@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bands</title>
+    <link href="/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+    @if(@Model["bands-in-venue"].Count != 0)
+    {
+      @foreach(var band in Model["bands-in-venue"])
+      {
+        <li>@band.GetName()</li>
+      }
+    }
+    else
+    {
+      <h4>There are no bands associated with this venue</h4>
+    }
+      <h4>Add a band to this venue:</h4>
+      <form action='/venue/add_band' method='post'>
+        <input id='venue-id' name='venue-id' type='hidden' value='@Model["current-venue"].GetId()'>
+        <label for='band-id'>Select a band</label>
+        <select id='band-id' name='band-id' type='text'>
+          @foreach (var band in @Model["all-bands"])
+          {
+            <option value='@band.GetId()'>@band.GetName()</option>
+          }
+        </select>
+        <button type='submit'>Add</button>
+      </form>
+      <p><a href="/">Return to Main Page</a></p>
+  </div>
+  </body>
+</html>

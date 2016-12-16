@@ -36,38 +36,38 @@ namespace BandTracker
         newVenue.Save();
         return View["new_venue.cshtml", newVenue];
       };
-      // Get["/band/{id}"] = parameters => {
-      //   Dictionary<string, object> model = new Dictionary<string, object>();
-      //   Band foundBand = Band.Find(parameters.id);
-      //   List<Venue> venues = foundBand.GetVenues();
-      //   List<Venue> allVenues = Venue.GetAll();
-      //   model.Add("current-band", foundBand);
-      //   model.Add("venues-in-band", venues);
-      //   model.Add("all-venues", allVenues);
-      //   return View["band.cshtml", model];
-      // };
-      // Post["/band/add_venue"] = _ =>{
-      //   Band band = Band.Find(Request.Form["band-id"]);
-      //   Venue venue = Venue.Find(Request.Form["venue-id"]);
-      //   band.AddVenue(venue);
-      //   return View["success.cshtml"];
-      // };
-      // Get["/venue/{id}"] = parameters => {
-      //   Dictionary<string, object> model = new Dictionary<string, object>();
-      //   Venue foundVenue = Venue.Find(parameters.id);
-      //   List<Band> bands = foundVenue.GetBands();
-      //   List<Band> allBands = Band.GetAll();
-      //   model.Add("current-venue", foundVenue);
-      //   model.Add("bands-enrolled", bands);
-      //   model.Add("all-bands", allBands);
-      //   return View["venue.cshtml", model];
-      // };
-      // Post["/venue/add_band"] = _ => {
-      //   Venue newVenue = Venue.Find(Request.Form["venue-id"]);
-      //   Band newBand = Band.Find(Request.Form["band-id"]);
-      //   newVenue.AddBand(newBand);
-      //   return View["success.cshtml"];
-      // };
+      Get["/band/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Band foundBand = Band.Find(parameters.id);
+        List<Venue> venues = foundBand.GetVenues();
+        List<Venue> allVenues = Venue.GetAll();
+        model.Add("current-band", foundBand);
+        model.Add("venues-in-band", venues);
+        model.Add("all-venues", allVenues);
+        return View["band.cshtml", model];
+      };
+      Post["/band/add_venue"] = _ =>{
+        Band band = Band.Find(Request.Form["band-id"]);
+        Venue venue = Venue.Find(Request.Form["venue-id"]);
+        band.AddVenue(venue);
+        return View["success.cshtml"];
+      };
+      Get["/venue/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Venue foundVenue = Venue.Find(parameters.id);
+        List<Band> bands = foundVenue.GetBands();
+        List<Band> allBands = Band.GetAll();
+        model.Add("current-venue", foundVenue);
+        model.Add("bands-in-venue", bands);
+        model.Add("all-bands", allBands);
+        return View["venue.cshtml", model];
+      };
+      Post["/venue/add_band"] = _ => {
+        Venue newVenue = Venue.Find(Request.Form["venue-id"]);
+        Band newBand = Band.Find(Request.Form["band-id"]);
+        newVenue.AddBand(newBand);
+        return View["success.cshtml"];
+      };
       // Get["/venue/delete/{id}"] = parameters => {
       //   Venue newVenue = Venue.Find(parameters.id);
       //   return View["venue_delete.cshtml", newVenue];
