@@ -16,12 +16,15 @@
           <li><a href="/band/new">Go Add a Band</a></li>
         </ul>
       </div>
+    </nav>
     <div class="container text-center">
     @if(@Model["bands-in-venue"].Count != 0)
     {
       @foreach(var band in Model["bands-in-venue"])
       {
-        <li>@band.GetName()</li>
+        <ul>
+          <li>@band.GetName()</li>
+        </ul>
       }
     }
     else
