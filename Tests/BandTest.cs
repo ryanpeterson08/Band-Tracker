@@ -52,20 +52,20 @@ namespace BandTracker
       Assert.Equal(testList, result);
     }
 
-    // [Fact]
-    // public void Find_FindsBandInDatabase_true()
-    // {
-    //   //Arrange
-    //   Band testBand = new Band("Ryan");
-    //   testBand.Save();
-    //
-    //   //Act
-    //   Band foundBand = Band.Find(testBand.GetId());
-    //
-    //   //Assert
-    //   Assert.Equal(testBand, foundBand);
-    // }
-    //
+    [Fact]
+    public void Find_FindsBandInDatabase_true()
+    {
+      //Arrange
+      Band testBand = new Band("Black Keys");
+      testBand.Save();
+
+      //Act
+      Band foundBand = Band.Find(testBand.GetId());
+
+      //Assert
+      Assert.Equal(testBand, foundBand);
+    }
+
     // [Fact]
     // public void AddBook_AddsBookToBand_True()
     // {
