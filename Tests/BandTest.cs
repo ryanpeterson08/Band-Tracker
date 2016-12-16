@@ -66,66 +66,24 @@ namespace BandTracker
       Assert.Equal(testBand, foundBand);
     }
 
-    // [Fact]
-    // public void AddBook_AddsBookToBand_True()
-    // {
-    //   Book newBook = new Book("Mr Wiggles");
-    //   newBook.Save();
-    //   Band newBand = new Band("Ryan");
-    //   newBand.Save();
-    //   newBand.AddBook(newBook);
-    //   List<Book> expected = new List<Book>{newBook};
-    //   List<Book> result = newBand.GetBooks();
-    //
-    //   Assert.Equal(expected, result);
-    // }
+    [Fact]
+    public void AddVenue_AddsVenueToBand_True()
+    {
+      Venue newVenue = new Venue("Crystal Ballroom");
+      newVenue.Save();
+      Band newBand = new Band("Black Keys");
+      newBand.Save();
+      newBand.AddVenue(newVenue);
+      List<Venue> expected = new List<Venue>{newVenue};
+      List<Venue> result = newBand.GetVenues();
 
-    // [Fact]
-    // public void Test_Deletes_Band()
-    // {
-    //   Band newBand = new Band("Virgina Woolf");
-    //
-    //   newBand.Save();
-    //   newBand.Delete();
-    //
-    //   List<Band> expected = new List<Band>{};
-    //   List<Band> result = Band.GetAll();
-    //
-    //   Assert.Equal(expected, result);
-    //
-    // }
-    // [Fact]
-    // public void Delete_DeletesAssociation_True()
-    // {
-    //   Book newBook = new Book("Mr Wiggles");
-    //   newBook.Save();
-    //   Band newBand = new Band("JRR Tolkien");
-    //   newBand.Save();
-    //   newBand.AddBook(newBook);
-    //   newBand.Delete();
-    //
-    //   List<Book> result = newBand.GetBooks();
-    //   List<Book> expected = new List<Book>{};
-    //   Assert.Equal(expected, result);
-    //
-    // }
-    // [Fact]
-    // public void Update_UpdatesDatabase_True()
-    // {
-    //   Band newBand = new Band("Frank Herbert");
-    //   newBand.Save();
-    //   newBand.Update("Frankie Herbert");
-    //
-    //   Band testBand = new Band("Frankie Herbert");
-    //   Band result = Band.Find(newBand.GetId());
-    //
-    //   Assert.Equal(testBand, result);
-    // }
+      Assert.Equal(expected, result);
+    }
 
     public void Dispose()
     {
       Band.DeleteAll();
-      //Book.DeleteAll();
+      Venue.DeleteAll();
     }
   }
 }
