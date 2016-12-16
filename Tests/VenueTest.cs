@@ -26,43 +26,40 @@ namespace BandTracker
     [Fact]
     public void GetAll_true()
     {
-      //Arrange
+
       Venue venueOne = new Venue("Crystal Ballroom");
       venueOne.Save();
       Venue venueTwo = new Venue("Moda Center");
       venueTwo.Save();
-      // Act
+
       int result = Venue.GetAll().Count;
 
-      //Assert
+
       Assert.Equal(2, result);
     }
 
     [Fact]
     public void Save_SavesToDatabase_true()
     {
-      //Arrange
+      
       Venue testVenue = new Venue("Crystal Ballroom");
       testVenue.Save();
-      //Act
 
       List<Venue> result = Venue.GetAll();
       List<Venue> testList = new List<Venue>{testVenue};
-      //Assert
+
       Assert.Equal(testList, result);
     }
 
     [Fact]
     public void Find_FindsVenueInDatabase_true()
     {
-      //Arrange
+
       Venue testVenue = new Venue("Crystal Ballroom");
       testVenue.Save();
 
-      //Act
       Venue foundVenue = Venue.Find(testVenue.GetId());
 
-      //Assert
       Assert.Equal(testVenue, foundVenue);
     }
 
@@ -79,59 +76,43 @@ namespace BandTracker
       Assert.Equal(testVenue, result);
     }
 
-    // [Fact]
-    // public void AddAuthor_AddsAuthorToVenue_True()
-    // {
-    //   Venue newVenue = new Venue("Mr Wiggles");
-    //   newVenue.Save();
-    //   Author newAuthor = new Author("Ryan");
-    //   newAuthor.Save();
-    //   newVenue.AddAuthor(newAuthor);
-    //   List<Author> expected = new List<Author>{newAuthor};
-    //   List<Author> result = newVenue.GetAuthors();
-    //
-    //   Assert.Equal(expected, result);
-    // }
+    [Fact]
+    public void AddBand_AddsBandToVenue_True()
+    {
+      Venue newVenue = new Venue("Crystal Ballroom");
+      newVenue.Save();
+      Band newBand = new Band("Black Keys");
+      newBand.Save();
 
-    // [Fact]
-    // public void Delete_DeletesAssociation_True()
-    // {
-    //   Venue newVenue = new Venue("Mr Wiggles");
-    //   newVenue.Save();
-    //   Author newAuthor = new Author("Shel Silverstein");
-    //   newVenue.Save();
-    //   newVenue.AddAuthor(newAuthor);
-    //   newVenue.Delete();
-    //
-    //   List<Author> result = newVenue.GetAuthors();
-    //   List<Author> expected = new List<Author>{};
-    //   Assert.Equal(expected, result);
-    //
-    // }
-    //
+      newVenue.AddBand(newBand);
+      List<Band> expected = new List<Band>{newBand};
+      List<Band> result = newVenue.GetBands();
+
+      Assert.Equal(expected, result);
+    }
 
     //
     // [Fact]
-    // public void Search_SearchVenueByAuthor()
+    // public void Search_SearchVenueByBand()
     // {
-    //   Author newAuthor = new Author("PD Woodhouse");
-    //   newAuthor.Save();
+    //   Band newBand = new Band("PD Woodhouse");
+    //   newBand.Save();
     //
     //   Venue venueOne = new Venue("Mr Wiggles");
     //   venueOne.Save();
-    //   venueOne.AddAuthor(newAuthor);
+    //   venueOne.AddBand(newBand);
     //
     //   Venue venueTwo = new Venue("Mr Muffin");
     //   venueTwo.Save();
-    //   venueTwo.AddAuthor(newAuthor);
+    //   venueTwo.AddBand(newBand);
     //
     //   Venue venueThree = new Venue("Mr Floof");
     //   venueThree.Save();
     //
-    //   List<Venue> venuesByAuthor = Venue.SearchAuthor("PD Woodhouse");
+    //   List<Venue> venuesByBand = Venue.SearchBand("PD Woodhouse");
     //   List<Venue> expectedVenues = new List<Venue> {venueOne, venueTwo};
     //
-    //   Assert.Equal(expectedVenues, venuesByAuthor);
+    //   Assert.Equal(expectedVenues, venuesByBand);
     // }
     //
     // public void Search_SearchVenueByName()
@@ -143,6 +124,23 @@ namespace BandTracker
     //
     //   Assert.Equal(newVenue, foundVenue);
     //  }
+
+    [Fact]
+    public void Delete_DeletesAssociation_True()
+    {
+      Venue newVenue = new Venue("Crystal Ballroom");
+      newVenue.Save();
+      Band newBand = new Band("Black Keys");
+      newVenue.Save();
+      newVenue.AddBand(newBand);
+      newVenue.Delete();
+
+      List<Band> result = newVenue.GetBands();
+      List<Band> expected = new List<Band>{};
+
+      Assert.Equal(expected, result);
+    }
+
     [Fact]
     public void Test_Deletes_Venue()
     {
@@ -160,7 +158,7 @@ namespace BandTracker
     public void Dispose()
     {
       Venue.DeleteAll();
-      //Band.DeleteAll();
+      Band.DeleteAll();
     }
   }
 }
