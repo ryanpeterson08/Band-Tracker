@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bands</title>
+    <link href="/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="/Content/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      @if(@Model.Count != 0)
+      {
+        <ul>
+        @foreach(var band in Model)
+        {
+          <li><a href="/band/@band.GetId()">@band.GetName()</li>
+
+        }
+      </ul>
+      }
+      else
+      {
+        <h4>There are no bands added yet - click the link below to add a band!</h4>
+      }
+      <a href="/band/new">Add a new Band!</a>
+    </div>
+  </body>
+</html>

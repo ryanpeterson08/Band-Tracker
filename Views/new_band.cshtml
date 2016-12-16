@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Band</title>
+    <link href="/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="/Content/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <form action="/band/new" method="post">
+        <div class="form-group">
+          <label for="band-name">Band Name:</label>
+          <input type="text" name="band-name" class="form-control">
+        </div>
+        <button type="submit" name="button" class="btn btn-danger">Add a Band!</button>
+      </form>
+      @if(Model!=null)
+      {
+        <div class="well">
+          <h4>The Band Has Been Added</h4>
+          <p>Band Name: @Model.GetName()</p>
+        </div>
+      }
+    </div>
+      <div class="container">
+        <a href="/">Home</a>
+        <h5><a href="/bands">View All Bands</a></h5>
+        <h5><a href="/venues">View All Venues</a></h5>
+      </div>
+  </body>
+</html>

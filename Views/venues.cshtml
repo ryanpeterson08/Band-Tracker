@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Venues</title>
+    <link href="/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="/Content/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      @if(@Model.Count != 0)
+      {
+        <ul>
+        @foreach(var venue in Model)
+        {
+          <li><a href="/venue/@venue.GetId()">@venue.GetName()</li>
+
+        }
+      </ul>
+      }
+      else
+      {
+        <h4>There are no venues added yet - click the link below to add a venue!</h4>
+      }
+      <a href="/venue/new">Add a new Venue!</a>
+    </div>
+  </body>
+</html>
