@@ -1,0 +1,24 @@
+body{
+  font-family: 'Copse', serif;
+  background-image: url(/Content/img/background.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+ul{
+  list-style-type: none;
+}
+
+li{
+  font-size: 28px;
+  margin-left: -30px;
+}
+
+button{
+  border-radius: 5px;
+}
+
+
+.nav li{
+  font-size: 20px;
+}

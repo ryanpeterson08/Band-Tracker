@@ -4,15 +4,27 @@
     <meta charset="utf-8">
     <title>Bands</title>
     <link href="/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Copse" rel="stylesheet">
     <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div class="container">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/">Return to Main Page</a></li>
+          <li><a href="/venue/new">Add a Venue</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container text-center">
     @if(@Model["venues-in-band"].Count != 0)
     {
       @foreach(var venue in Model["venues-in-band"])
       {
-        <li>@venue.GetName()</li>
+        <ul>
+          <li>@venue.GetName()</li>
+        </ul>
       }
     }
     else
@@ -23,23 +35,25 @@
     {
       <h4>Add a venue to this band:</h4>
       <form action='/band/add_venue' method='post'>
-      <input id='band-id' name='band-id' type='hidden' value='@Model["current-band"].GetId()'>
-      <label for='venue-id'>Select a venue</label>
-      <select id='venue-id' name='venue-id' type='text'>
-      @foreach (var venue in @Model["all-venues"])
-      {
-        <option value='@venue.GetId()'>@venue.GetName()</option>
-      }
-      </select>
-      <button type='submit'>Add</button>
+      <div class="form-group">
+        <input class="form-control" name='band-id' type='hidden' value='@Model["current-band"].GetId()'>
+      </div>
+      <div class="form-group">
+        <label for='venue-id'>Select a venue</label>
+        <select class="form-control" name='venue-id' type='text'>
+        @foreach (var venue in @Model["all-venues"])
+        {
+          <option value='@venue.GetId()'>@venue.GetName()</option>
+        }
+        </select>
+      </div>
+      <button type='submit' class="btn btn-danger">Add</button>
       </form>
     }
     else
     {
       <h4>There are no Venues to Add!</h4>
     }
-      <p><a href="/">Return to Main Page</a></p>
-      <p><a href="/venue/new">Add a Venue</a></p>
   </div>
   </body>
 </html>

@@ -4,10 +4,19 @@
     <meta charset="utf-8">
     <title>Bands</title>
     <link href="/Content/css/bootstrap.css" rel="stylesheet">
-    <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Copse" rel="stylesheet">
+    <link href="/Content/css/styles.css" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/">Return to Main Page</a></li>
+          <li><a href="/band/new">Go Add a Band</a></li>
+        </ul>
+      </div>
+    <div class="container text-center">
     @if(@Model["bands-in-venue"].Count != 0)
     {
       @foreach(var band in Model["bands-in-venue"])
@@ -23,23 +32,23 @@
     {
       <h4>Add a band to this venue:</h4>
       <form action='/venue/add_band' method='post'>
-      <input id='venue-id' name='venue-id' type='hidden' value='@Model["current-venue"].GetId()'>
-      <label for='band-id'>Select a band</label>
-      <select id='band-id' name='band-id' type='text'>
-      @foreach (var band in @Model["all-bands"])
-      {
-        <option value='@band.GetId()'>@band.GetName()</option>
-      }
-      </select>
-      <button type='submit'>Add</button>
+        <input id='venue-id' name='venue-id' type='hidden' value='@Model["current-venue"].GetId()'>
+        <div class="form-group">
+          <label for='band-id'>Select a band</label>
+          <select class="form-control" name='band-id' type='text'>
+          @foreach (var band in @Model["all-bands"])
+          {
+            <option value='@band.GetId()'>@band.GetName()</option>
+          }
+          </select>
+        </div>
+      <button type='submit btn btn-danger'>Add</button>
       </form>
     }
     else
     {
       <h4>There are no Bands to Add!</h4>
     }
-      <p><a href="/">Return to Main Page</a></p>
-      <p><a href="/band/new">Go Add a Band</a></p>
   </div>
   </body>
 </html>
