@@ -68,24 +68,24 @@ namespace BandTracker
         newVenue.AddBand(newBand);
         return View["success.cshtml"];
       };
-      // Get["/venue/delete/{id}"] = parameters => {
-      //   Venue newVenue = Venue.Find(parameters.id);
-      //   return View["venue_delete.cshtml", newVenue];
-      // };
-      // Delete["/venue/delete/{id}"] = parameters => {
-      //   Venue selectedVenue = Venue.Find(parameters.id);
-      //   selectedVenue.Delete();
-      //   return View["success.cshtml"];
-      // };
-      // Get["/band/delete/{id}"] = parameters => {
-      //   Band newBand = Band.Find(parameters.id);
-      //   return View["band_delete.cshtml", newBand];
-      // };
-      // Delete["/band/delete/{id}"] = parameters => {
-      //   Band selectedBand = Band.Find(parameters.id);
-      //   selectedBand.Delete();
-      //   return View["success.cshtml"];
-      // };
+      Get["/venue/delete/{id}"] = parameters => {
+        Venue newVenue = Venue.Find(parameters.id);
+        return View["venue_delete.cshtml", newVenue];
+      };
+      Delete["/venue/delete/{id}"] = parameters => {
+        Venue selectedVenue = Venue.Find(parameters.id);
+        selectedVenue.Delete();
+        return View["success.cshtml"];
+      };
+      Get["venue/edit/{id}"] = parameters => {
+        Venue SelectedVenue = Venue.Find(parameters.id);
+        return View["venue_edit.cshtml", SelectedVenue];
+      };
+      Patch["/venue/edit/{id}"] = parameters => {
+      Venue SelectedVenue = Venue.Find(parameters.id);
+      SelectedVenue.Update(Request.Form["venue-name"]);
+      return View["success.cshtml"];
+      };
     }
   }
 }

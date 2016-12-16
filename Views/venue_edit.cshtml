@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Venue</title>
+    <link href="/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="/Content/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <h2>Edit: @Model.GetName()</h2>
+    <form action="/venue/edit/@Model.GetId()" method="post">
+      <div class="form-group">
+        <input type="hidden" name="_method" value="PATCH">
+      </div>
+      <div class="form-group">
+        <input name="venue-id" type="hidden" value="@Model.GetId()">
+        <label for="venue-name">Venue Name</label>
+        <input name="venue-name" type="text">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+    <a href="/">Home</a>
+  </body>
+</html>
