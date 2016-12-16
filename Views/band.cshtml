@@ -19,19 +19,27 @@
     {
       <h4>There are no venues associated with this band</h4>
     }
+    @if(@Model["all-venues"].Count != 0)
+    {
       <h4>Add a venue to this band:</h4>
       <form action='/band/add_venue' method='post'>
-        <input id='band-id' name='band-id' type='hidden' value='@Model["current-band"].GetId()'>
-        <label for='venue-id'>Select a venue</label>
-        <select id='venue-id' name='venue-id' type='text'>
-          @foreach (var venue in @Model["all-venues"])
-          {
-            <option value='@venue.GetId()'>@venue.GetName()</option>
-          }
-        </select>
-        <button type='submit'>Add</button>
+      <input id='band-id' name='band-id' type='hidden' value='@Model["current-band"].GetId()'>
+      <label for='venue-id'>Select a venue</label>
+      <select id='venue-id' name='venue-id' type='text'>
+      @foreach (var venue in @Model["all-venues"])
+      {
+        <option value='@venue.GetId()'>@venue.GetName()</option>
+      }
+      </select>
+      <button type='submit'>Add</button>
       </form>
+    }
+    else
+    {
+      <h4>There are no Venues to Add!</h4>
+    }
       <p><a href="/">Return to Main Page</a></p>
+      <p><a href="/venue/new">Add a Venue</a></p>
   </div>
   </body>
 </html>
