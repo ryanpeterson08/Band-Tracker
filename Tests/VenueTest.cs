@@ -52,6 +52,20 @@ namespace BandTracker
       Assert.Equal(testList, result);
     }
 
+    [Fact]
+    public void Find_FindsVenueInDatabase_true()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Crystal Ballroom");
+      testVenue.Save();
+
+      //Act
+      Venue foundVenue = Venue.Find(testVenue.GetId());
+
+      //Assert
+      Assert.Equal(testVenue, foundVenue);
+    }
+
     // [Fact]
     // public void AddAuthor_AddsAuthorToVenue_True()
     // {
@@ -66,19 +80,7 @@ namespace BandTracker
     //   Assert.Equal(expected, result);
     // }
     //
-    // [Fact]
-    // public void Find_FindsVenueInDatabase_true()
-    // {
-    //   //Arrange
-    //   Venue testVenue = new Venue("Mr Wiggles");
-    //   testVenue.Save();
-    //
-    //   //Act
-    //   Venue foundVenue = Venue.Find(testVenue.GetId());
-    //
-    //   //Assert
-    //   Assert.Equal(testVenue, foundVenue);
-    // }
+
     //
     // [Fact]
     // public void Test_Deletes_Venue()
