@@ -128,6 +128,35 @@ namespace BandTracker
       return foundVenue;
     }
 
+    public void Update(string VenueName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @VenueName WHERE id = @VenueId;", conn);
+
+      SqlParameter venueIdParameter = new SqlParameter("@VenueId", this.GetId());
+      SqlParameter venueNameParameter = new SqlParameter("@VenueName", VenueName);
+       cmd.Parameters.Add(venueIdParameter);
+       cmd.Parameters.Add(venueNameParameter);
+
+       SqlDataReader rdr = cmd.ExecuteReader();
+
+       while(rdr.Read())
+       {
+         _id = rdr.GetInt32(0);
+         _name = rdr.GetString(1);
+       }
+       if (rdr != null)
+       {
+         rdr.Close();
+       }
+       if (conn != null)
+       {
+         conn.Close();
+       }
+     }
+
     // public void AddAuthor(Author newAuthor)
     // {
     //   SqlConnection conn = DB.Connection();
@@ -178,34 +207,7 @@ namespace BandTracker
     //   return authors;
     // }
 
-    // public void Update(string VenueName)
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @VenueName WHERE id = @VenueId;", conn);
-    //
-    //   SqlParameter venueIdParameter = new SqlParameter("@VenueId", this.GetId());
-    //   SqlParameter venueNameParameter = new SqlParameter("@VenueName", VenueName);
-    //    cmd.Parameters.Add(venueIdParameter);
-    //    cmd.Parameters.Add(venueNameParameter);
-    //
-    //    SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //    while(rdr.Read())
-    //    {
-    //      _id = rdr.GetInt32(0);
-    //      _name = rdr.GetString(1);
-    //    }
-    //    if (rdr != null)
-    //    {
-    //      rdr.Close();
-    //    }
-    //    if (conn != null)
-    //    {
-    //      conn.Close();
-    //    }
-    //  }
+
     //  public static List<Venue> SearchAuthor(string authorName)
     //  {
     //    SqlConnection conn = DB.Connection();
