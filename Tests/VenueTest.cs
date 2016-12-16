@@ -72,7 +72,7 @@ namespace BandTracker
       Venue newVenue = new Venue("Rose Garden");
       newVenue.Save();
       newVenue.Update("Moda Center");
-    
+
       Venue testVenue = new Venue("Moda Center");
       Venue result = Venue.Find(newVenue.GetId());
 
@@ -92,23 +92,7 @@ namespace BandTracker
     //
     //   Assert.Equal(expected, result);
     // }
-    //
 
-    //
-    // [Fact]
-    // public void Test_Deletes_Venue()
-    // {
-    //   Venue newVenue = new Venue("Mr Wiggles");
-    //
-    //   newVenue.Save();
-    //   newVenue.Delete();
-    //
-    //   List<Venue> expected = new List<Venue>{};
-    //   List<Venue> result = Venue.GetAll();
-    //
-    //   Assert.Equal(expected, result);
-    //
-    // }
     // [Fact]
     // public void Delete_DeletesAssociation_True()
     // {
@@ -159,6 +143,19 @@ namespace BandTracker
     //
     //   Assert.Equal(newVenue, foundVenue);
     //  }
+    [Fact]
+    public void Test_Deletes_Venue()
+    {
+      Venue newVenue = new Venue("Mr Wiggles");
+
+      newVenue.Save();
+      newVenue.Delete();
+
+      List<Venue> expected = new List<Venue>{};
+      List<Venue> result = Venue.GetAll();
+
+      Assert.Equal(expected, result);
+    }
 
     public void Dispose()
     {

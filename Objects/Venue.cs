@@ -162,13 +162,13 @@ namespace BandTracker
     //   SqlConnection conn = DB.Connection();
     //   conn.Open();
     //
-    //   SqlCommand cmd = new SqlCommand("INSERT INTO authors_venues (author_id, venue_id) VALUES (@AuthorId, @VenueId);", conn);
+    //   SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues (band_id, venue_id) VALUES (@AuthorId, @VenueId);", conn);
     //
     //   SqlParameter venueIdParameter = new SqlParameter("@VenueId", this.GetId());
     //   cmd.Parameters.Add(venueIdParameter);
     //
-    //   SqlParameter authorIdParameter = new SqlParameter("@AuthorId", newAuthor.GetId());
-    //   cmd.Parameters.Add(authorIdParameter);
+    //   SqlParameter bandIdParameter = new SqlParameter("@AuthorId", newAuthor.GetId());
+    //   cmd.Parameters.Add(bandIdParameter);
     //
     //   cmd.ExecuteNonQuery();
     //
@@ -182,19 +182,19 @@ namespace BandTracker
     // {
     //   SqlConnection conn = DB.Connection();
     //   conn.Open();
-    //   SqlCommand cmd = new SqlCommand("SELECT authors.* FROM venues JOIN authors_venues ON (venues.id = authors_venues.venue_id) JOIN authors ON (authors_venues.author_id = authors.id) WHERE venues.id=@VenueId;",conn);
+    //   SqlCommand cmd = new SqlCommand("SELECT bands.* FROM venues JOIN bands_venues ON (venues.id = bands_venues.venue_id) JOIN bands ON (bands_venues.band_id = bands.id) WHERE venues.id=@VenueId;",conn);
     //
     //   SqlParameter VenueIdParameter = new SqlParameter("@VenueId", this.GetId());
     //   cmd.Parameters.Add(VenueIdParameter);
     //   SqlDataReader rdr = cmd.ExecuteReader();
     //
-    //   List<Author> authors = new List<Author>{};
+    //   List<Author> bands = new List<Author>{};
     //   while(rdr.Read())
     //   {
-    //     int authorId = rdr.GetInt32(0);
-    //     string authorName = rdr.GetString(1);
-    //     Author newAuthor = new Author(authorName, authorId);
-    //     authors.Add(newAuthor);
+    //     int bandId = rdr.GetInt32(0);
+    //     string bandName = rdr.GetString(1);
+    //     Author newAuthor = new Author(bandName, bandId);
+    //     bands.Add(newAuthor);
     //   }
     //   if (rdr != null)
     //   {
@@ -204,18 +204,18 @@ namespace BandTracker
     //   {
     //     conn.Close();
     //   }
-    //   return authors;
+    //   return bands;
     // }
 
 
-    //  public static List<Venue> SearchAuthor(string authorName)
+    //  public static List<Venue> SearchAuthor(string bandName)
     //  {
     //    SqlConnection conn = DB.Connection();
     //    conn.Open();
-    //    SqlCommand cmd = new SqlCommand("SELECT venues.* FROM authors JOIN authors_venues ON (authors.id = authors_venues.author_id) JOIN venues ON (authors_venues.venue_id = venues.id) WHERE authors.name=@AuthorName;",conn);
+    //    SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.name=@AuthorName;",conn);
      //
-    //    SqlParameter authorNameParameter = new SqlParameter("@AuthorName", authorName);
-    //    cmd.Parameters.Add(authorNameParameter);
+    //    SqlParameter bandNameParameter = new SqlParameter("@AuthorName", bandName);
+    //    cmd.Parameters.Add(bandNameParameter);
     //    SqlDataReader rdr = cmd.ExecuteReader();
      //
     //    List<Venue> venues = new List<Venue>{};
@@ -275,7 +275,7 @@ namespace BandTracker
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM authors_venues WHERE venue_id = @VenueId", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId", conn);
       SqlParameter venueIdParameter = new SqlParameter("@VenueId", this.GetId());
       cmd.Parameters.Add(venueIdParameter);
       cmd.ExecuteNonQuery();
