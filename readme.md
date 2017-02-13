@@ -1,4 +1,4 @@
-# Hair Salon App
+# Band Tracker App
 
 #### Web app that allows user add clients and stylists, as well as update and delete them, 12/16/2016
 
